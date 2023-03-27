@@ -1,5 +1,6 @@
 import Nav from './auth/Nav'
 import './globals.css'
+import QueryWrapper from "./auth/QueryWrapper"
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,8 +12,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className='bg-gray-300'>
-        <Nav />
-        {children}
+        <QueryWrapper>
+          <Nav />
+          {children}
+        </QueryWrapper>
+
       </body>
     </html>
   )
