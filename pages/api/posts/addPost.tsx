@@ -13,11 +13,10 @@ export default async function handler(
             return res.status(401).json({ message: "Please sign in" })
         }
 
-        const title: string = req.body.title
-
+        const title: string = req.body.title;
 
         const prismaUser = await prisma.user.findUnique({
-            where: { email: session?.user?.email },
+            where: { email: session?.user?.email || ""}
         })
 
 
@@ -32,7 +31,7 @@ export default async function handler(
             const result = await prisma.post.create({
                 data: {
                     title,
-                    userId: prismaUser.id,
+                    userId: prismaUser?.id,
                 }
             })
             res.status(200).json(result)
