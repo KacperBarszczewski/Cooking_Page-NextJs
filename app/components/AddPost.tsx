@@ -1,12 +1,13 @@
 
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react"
 
 export default function CreatePost() {
     const [title, setTitle] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
+    const queryClient = useQueryClient();
 
     const { mutate } = useMutation(
         async (title: string) => await axios.post('/api/posts/addPost', { title }),
@@ -15,6 +16,7 @@ export default function CreatePost() {
                 console.log(error)
             },
             onSuccess: (data) => {
+                queryClient.invalidateQueries(["posts"])
                 console.log(data)
                 setTitle("")
                 setIsDisabled(false)
