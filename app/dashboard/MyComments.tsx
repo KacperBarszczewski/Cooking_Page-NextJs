@@ -21,7 +21,7 @@ export default function MyComments() {
 
     return (
         <div>
-            {data?.Comment?.map((comment) => (
+            {data?.comments?.map((comment) => (
                 <EditComment
                     key={comment.id}
                     id={comment.id}

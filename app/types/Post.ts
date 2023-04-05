@@ -1,3 +1,5 @@
+import { Role } from "@prisma/client"
+
 export type PostType = {
     id: string
     title: string
@@ -7,8 +9,9 @@ export type PostType = {
         id: string
         image: string
         name: string
+        role: Role
     }
-    Comment: {
+    comments: {
         createdAt?: string
         id: string
         postId: string
@@ -19,6 +22,7 @@ export type PostType = {
             id: string
             image: string
             name: string
+            role: Role
         }
     }[]
 }

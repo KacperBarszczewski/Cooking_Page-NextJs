@@ -2,7 +2,7 @@ export type PostType = {
     title: string
     id: string
     createdAt: string
-    Comment?: {
+    comments?: {
         createdAt: string
         id: string
         postId: string

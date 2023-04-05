@@ -32,9 +32,9 @@ export default function PostDetail(url: URL) {
     console.log(data)
     return (
         <div>
-            <Post id={data!.id} postTitle={data!.title} comments={data?.Comment} />
+            <Post id={data!.id} postTitle={data!.title} comments={data?.comments} />
             <AddComment id={data?.id} />
-            {data?.Comment?.map((comment) => (
+            {data?.comments?.map((comment) => (
                 <div key={comment.id} className="my-6 bg-white p-8 rounded-md">
                     <div className="flex items-center gap-2">
                         <Image

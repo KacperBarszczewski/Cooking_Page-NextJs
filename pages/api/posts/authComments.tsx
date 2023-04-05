@@ -19,7 +19,7 @@ export default async function handler(
                     email: session.user?.email || "",
                 },
                 include: {
-                    Comment: {
+                    comments: {
                         orderBy: {
                             createdAt: 'desc'
                         }

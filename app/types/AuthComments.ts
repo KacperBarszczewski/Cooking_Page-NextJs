@@ -1,9 +1,12 @@
+import { Role } from "@prisma/client"
+
 export type AuthComments = {
     email: string
     id: string
     image: string
     name: string
-    Comment?: {
+    role: Role
+    comments?: {
         id: string
         message: string
         createdAt: string
