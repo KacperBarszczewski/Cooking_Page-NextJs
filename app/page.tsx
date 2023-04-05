@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Image from 'next/image'
-import AddPost from './components/AddPost'
+import AddPost from './dashboard/admin/createPost/AddPost'
 import Post from './components/Post'
 import { PostType } from './types/Posts'
 
@@ -21,11 +21,9 @@ export default function Home() {
   if (error) {
     return "error"
   }
-  console.log(data)
 
   return (
     <main >
-      <AddPost />
       {data?.map((post) => (
         <Post key={post.id} id={post.id} postTitle={post.title} comments={post.comments}/>
       ))}
