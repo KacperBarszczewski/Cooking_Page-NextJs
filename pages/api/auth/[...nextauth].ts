@@ -7,35 +7,35 @@ import { Role } from "@prisma/client"
 
 type UserId = string
 
-declare module 'next-auth/jwt'{
-  interface JWT{
+declare module 'next-auth/jwt' {
+  interface JWT {
     id: UserId
     role: Role
   }
 }
 
-declare module 'next-auth'{
-  interface Session{
-    user: User &{
+declare module 'next-auth' {
+  interface Session {
+    user: User & {
       id: UserId
       role: Role
     }
   }
 }
 
-function getGoogleCredentials(): {clientId:string; clientSecret: string}{
+function getGoogleCredentials(): { clientId: string; clientSecret: string } {
   const clientId = process.env.GOOGLE_CLIENT_ID
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET
 
-  if(!clientId || clientId.length===0){
+  if (!clientId || clientId.length === 0) {
     throw new Error('Missing GOOGLE_CLIENT_ID')
   }
 
-  if(!clientSecret || clientSecret.length===0){
+  if (!clientSecret || clientSecret.length === 0) {
     throw new Error('Missing GOOGLE_CLIENT_SECRET')
   }
 
-  return {clientId, clientSecret}
+  return { clientId, clientSecret }
 }
 
 export const authOptions: NextAuthOptions = {
@@ -43,11 +43,14 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-
+  pages: {
+    error: '/login',
+  },
+  secret: process.env.AUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
-      clientSecret:  getGoogleCredentials().clientSecret,
+      clientSecret: getGoogleCredentials().clientSecret,
     }),
   ],
   callbacks: {
@@ -59,6 +62,7 @@ export const authOptions: NextAuthOptions = {
         session.user.image = token.picture
         session.user.role = token.role
       }
+
       return session
     },
     async jwt({ token, user }) {
@@ -68,17 +72,17 @@ export const authOptions: NextAuthOptions = {
         },
       })
 
-      if(!dbUser){
+      if (!dbUser) {
         token.id = user!.id
         return token
       }
 
-      return{
-        id:dbUser.id,
-        name:dbUser.name,
-        role:dbUser.role,
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        role: dbUser.role,
         email: dbUser.email,
-        picture:dbUser.image,
+        picture: dbUser.image,
       }
     }
   }
