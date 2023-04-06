@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <main >
       {data?.map((post) => (
-        <Post key={post.id} id={post.id} postTitle={post.title} comments={post.comments}/>
+        <Post key={post.id} id={post.id} postTitle={post.title} comments={post.comments} image={post.image}/>
       ))}
     </main>
   )

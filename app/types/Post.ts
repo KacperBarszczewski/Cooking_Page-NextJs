@@ -3,6 +3,10 @@ import { Role } from "@prisma/client"
 export type PostType = {
     id: string
     title: string
+    image?: string
+    content?: string
+    ingredients: string[]
+    published: boolean
     updatedAt?: string
     user: {
         email: string
