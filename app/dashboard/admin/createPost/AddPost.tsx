@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
-import { MouseEventHandler, useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 export default function CreatePost() {
     const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -13,7 +13,7 @@ export default function CreatePost() {
     const [isDisabled, setIsDisabled] = useState(false);
     const [img, setImg] = useState("");
     const [content, setContent] = useState("");
-    const [ingredients, setIngredients] = useState(["pomidor", "cebula"]);
+    const [ingredients, setIngredients] = useState<string[]>([]);
 
 
     const { mutate } = useMutation(
