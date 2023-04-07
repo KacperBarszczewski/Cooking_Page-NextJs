@@ -3,6 +3,8 @@ import { Role } from "@prisma/client"
 import { getServerSession } from "next-auth/next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import Posts from "./Posts"
+
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions)
@@ -18,6 +20,7 @@ return(
     <main>
         <h1 className="text-2xl font-bold">Welcome back {session?.user?.role}</h1>
         <Link href={`/dashboard/admin/createPost`}>Create Post</Link>
+        <Posts/>
     </main>
 )
     
