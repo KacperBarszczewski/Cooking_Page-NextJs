@@ -2,6 +2,7 @@ import prisma from "../../../prisma/client"
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
+import { Role } from "@prisma/client";
 
 export default async function handler(
     req: NextApiRequest,
@@ -12,12 +13,16 @@ export default async function handler(
         if (!session) {
             return res.status(401).json({ message: "Please sign in" })
         }
-
-        const title: string = req.body.title;
+        if (session.user.role!==Role.ADMIN) {
+            return res.status(401).json({ message: "You must be ADMIN" })
+        }
 
         const prismaUser = await prisma.user.findUnique({
             where: { email: session?.user?.email || ""}
         })
+
+        const title: string = req.body.title;
+        const image: string = req.body.img;
 
 
 
@@ -31,6 +36,7 @@ export default async function handler(
             const result = await prisma.post.create({
                 data: {
                     title,
+                    image,
                     userId: prismaUser?.id,
                 }
             })
