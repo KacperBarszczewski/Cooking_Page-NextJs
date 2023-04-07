@@ -3,18 +3,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
-import { useState } from "react"
+import { MouseEventHandler, useRef, useState } from "react"
 
 export default function CreatePost() {
+    const hiddenFileInput = useRef<HTMLInputElement>(null);
+    const queryClient = useQueryClient();
+
     const [title, setTitle] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [img, setImg] = useState("");
     const [content, setContent] = useState("");
+    const [ingredients, setIngredients] = useState(["pomidor", "cebula"]);
 
-    const queryClient = useQueryClient();
 
     const { mutate } = useMutation(
-        async (title: string) => await axios.post('/api/posts/addPost', { title, img, content }),
+        async (title: string) => await axios.post('/api/posts/addPost', { title, img, content, ingredients }),
         {
             onError: (error) => {
                 console.log(error)
@@ -24,6 +27,8 @@ export default function CreatePost() {
                 console.log(data)
                 setTitle("")
                 setImg("")
+                setContent("")
+                setIngredients([])
                 setIsDisabled(false)
             }
         }
@@ -44,6 +49,10 @@ export default function CreatePost() {
         data.readAsDataURL(e.target.files![0]);
     };
 
+    const handleClick = () => {
+        hiddenFileInput.current?.click();
+    };
+
     return (
         <form onSubmit={submitPost} className="bg-white my-8 p-8 rounded-md">
             <div className="flex flex-col my-4">
@@ -54,10 +63,14 @@ export default function CreatePost() {
                     value={title}
                     placeholder="Title"
                 ></textarea>
+
                 {
                     img ? <Image width={200} height={200} src={img} alt="user image" className="rounded" /> : <div className="w-52 h-52" />
                 }
-                <input type="file" onChange={handleImgChange} />
+
+                <input type="file" accept="image/*" ref={hiddenFileInput} onChange={handleImgChange} className="hidden" />
+                <button type="button" onClick={handleClick}>Upload a image</button>
+
                 <textarea
                     className="p-4 text-lg rounded-md my-2 bg-gray-200"
                     onChange={(e) => setContent(e.target.value)}
@@ -65,6 +78,37 @@ export default function CreatePost() {
                     value={content}
                     placeholder="Content"
                 ></textarea>
+
+                <div className="text-center">
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setIngredients(currentIngredients => [...currentIngredients, ""])
+                        }} >Add now ingredient
+                    </button>
+
+                    {ingredients.map((item, i) => {
+                        return (
+                            <div key={i}>
+                                <input
+                                    value={item}
+                                    placeholder="Add ingredient"
+                                    onChange={
+                                        (e) => {
+                                            const item = e.target.value;
+                                            setIngredients((currentItems) => currentItems.map((x, l) => l === i ? item : x))
+                                        }}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIngredients(currentIngredients => currentIngredients.filter((x, l) => l !== i))
+                                    }} >X
+                                </button>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
             <div>
                 <button
