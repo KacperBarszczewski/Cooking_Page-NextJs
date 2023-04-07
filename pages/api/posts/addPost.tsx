@@ -23,6 +23,7 @@ export default async function handler(
 
         const title: string = req.body.title;
         const image: string = req.body.img;
+        const content: string = req.body.content;
 
 
 
@@ -37,6 +38,7 @@ export default async function handler(
                 data: {
                     title,
                     image,
+                    content,
                     userId: prismaUser?.id,
                 }
             })

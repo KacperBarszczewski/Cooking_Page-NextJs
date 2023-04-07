@@ -9,10 +9,12 @@ export default function CreatePost() {
     const [title, setTitle] = useState("");
     const [isDisabled, setIsDisabled] = useState(false);
     const [img, setImg] = useState("");
+    const [content, setContent] = useState("");
+
     const queryClient = useQueryClient();
 
     const { mutate } = useMutation(
-        async (title: string) => await axios.post('/api/posts/addPost', { title, img }),
+        async (title: string) => await axios.post('/api/posts/addPost', { title, img, content }),
         {
             onError: (error) => {
                 console.log(error)
@@ -56,6 +58,13 @@ export default function CreatePost() {
                     img ? <Image width={200} height={200} src={img} alt="user image" className="rounded" /> : <div className="w-52 h-52" />
                 }
                 <input type="file" onChange={handleImgChange} />
+                <textarea
+                    className="p-4 text-lg rounded-md my-2 bg-gray-200"
+                    onChange={(e) => setContent(e.target.value)}
+                    name="content"
+                    value={content}
+                    placeholder="Content"
+                ></textarea>
             </div>
             <div>
                 <button
