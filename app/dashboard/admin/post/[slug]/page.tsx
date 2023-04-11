@@ -3,6 +3,7 @@ import { Role } from "@prisma/client"
 import { getServerSession } from "next-auth/next"
 import { redirect } from "next/navigation"
 import EditPost from "./EditPost"
+import DeletePost from "./DeletePost"
 
 type URL = {
     params: {
@@ -22,8 +23,10 @@ export default async function Dashboard(url: URL) {
 
     return (
         <main>
-            <h1 className="text-2xl font-bold">Create Post</h1>
+            <h1 className="text-2xl font-bold">Edit Post</h1>
             <EditPost params={{ slug: url.params.slug }} />
+            <h1 className="text-2xl font-bold">Delete Post</h1>
+            <DeletePost id={url.params.slug} />
         </main>
     )
 
