@@ -1,7 +1,6 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { Role } from "@prisma/client"
 import { getServerSession } from "next-auth/next"
-import Link from "next/link"
 import { redirect } from "next/navigation"
 import AddPost from "./AddPost"
 

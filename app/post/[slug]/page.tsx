@@ -32,7 +32,6 @@ export default function PostDetail(url: URL) {
         return 'error'
     }
 
-    console.log(data)
     return (
         <div>
             <Post id={data.id} postTitle={data.title} comments={data?.comments}  image={data?.image}/>
