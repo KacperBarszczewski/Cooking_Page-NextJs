@@ -6,18 +6,16 @@ import Logged from "./Logged";
 
 export default async function Nav() {
     const session = await getServerSession(authOptions)
-    console.log(session)
-
 
     return (
-        <nav className="flex justify-between items-center p-4">
-            <Link href={"/"}>
-                <h1 className="font-bold text-lg">Cooking Page</h1>
-            </Link>
-            <ul>
-                {!session?.user && <Login/>}
-                {session?.user && <Logged image={session.user?.image || ""}/>}
-            </ul>
-        </nav>
+            <nav className="flex justify-between items-center p-4">
+                <Link href={"/"}>
+                    <h1 className="font-bold text-lg">Cooking Page</h1>
+                </Link>
+                <ul>
+                    {!session?.user && <Login />}
+                    {session?.user && <Logged image={session.user?.image || ""} />}
+                </ul>
+            </nav>
     )
 }
