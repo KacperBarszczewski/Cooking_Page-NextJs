@@ -8,14 +8,18 @@ export default async function Nav() {
     const session = await getServerSession(authOptions)
 
     return (
-            <nav className="flex justify-between items-center p-4">
+        <nav className="flex p-4">
+            <div className="basis-1/2 flex items-center">
                 <Link href={"/"}>
-                    <h1 className="font-bold text-lg">Cooking Page</h1>
+                    <h1 className="font-extrabold text-lg sm:text-4xl text-primary">Cooking Page</h1>
                 </Link>
-                <ul>
+            </div>
+            <div className="basis-1/2 flex justify-end items-center">
                     {!session?.user && <Login />}
                     {session?.user && <Logged image={session.user?.image || ""} />}
-                </ul>
-            </nav>
+            </div>
+
+
+        </nav>
     )
 }

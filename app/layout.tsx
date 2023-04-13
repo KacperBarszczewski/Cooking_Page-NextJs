@@ -11,7 +11,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
   return (
     <html lang="en">
       <head />
-      <body className='bg-gray-300'>
+      <body className='bg-background text-typography'>
         <QueryWrapper>
           {/* @ts-expect-error Server Component */}
           <Nav />
