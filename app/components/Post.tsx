@@ -12,19 +12,18 @@ type Props = {
 
 export default function Post({ id, postTitle, comments, image }: Props) {
     return (
-        <div className="bg-white my-8 p-8 rounded-lg">
-            <div className="flex items-center gap-2">
-                <p className="font-semibold">{postTitle}</p>
-            </div>
-            { 
-                image ? <Image width={200} height={200} src={image} alt="user image" className="rounded"/>:<div className="w-52 h-52"/>
-            }
-
-            
+        <Link href={`/post/${id}`} className="p-6 block w-[20rem]">
             <div>
-                <Link href={`/post/${id}`}>{comments?.length} comments</Link>
+                {
+                    image ? <Image className="object-cover h-36 w-[20rem] rounded" width={200} height={200} src={image} alt={postTitle + " image"} /> : <div className="w-52 h-52" />
+                }
             </div>
-
-        </div>
+            <div>
+                <h2 className="font-semibold">{postTitle}</h2>
+            </div>
+            <div className="text-xs text-primary">
+                {comments?.length} comments
+            </div>
+        </Link>
     )
 }

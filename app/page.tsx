@@ -16,17 +16,20 @@ export default function Home() {
   const { data, error, isLoading } = useQuery<PostType[]>({ queryFn: allPosts, queryKey: ["posts"], })
 
   if (isLoading) {
-    return "Loading..."
+    return <div>Loading...</div>
   }
   if (error) {
-    return "error"
+    return <div>error</div>
   }
 
   return (
-    <main >
-      {data?.map((post) => (
+    <main className='flex justify-center my-8'>
+      <div className='grid sm:grid-cols-2 lg:grid-cols-3'>
+        {data?.map((post) => (
         <Post key={post.id} id={post.id} postTitle={post.title} comments={post.comments} image={post.image}/>
       ))}
+      </div>
+      
     </main>
   )
 }
