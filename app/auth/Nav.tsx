@@ -8,7 +8,7 @@ export default async function Nav() {
     const session = await getServerSession(authOptions)
 
     return (
-        <nav className="flex p-4">
+        <nav className="flex p-4 max-w-5xl mx-auto">
             <div className="basis-1/2 flex items-center">
                 <Link href={"/"}>
                     <h1 className="font-extrabold text-lg sm:text-4xl text-primary">Cooking Page</h1>
