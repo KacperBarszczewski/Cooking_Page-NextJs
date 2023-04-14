@@ -17,9 +17,9 @@ export default async function Dashboard() {
 
 
 return(
-    <main>
+    <main className="max-w-5xl mx-auto my-5">
         <h1 className="text-2xl font-bold">Welcome back {session?.user?.role}</h1>
-        <Link href={`/dashboard/admin/createPost`}>Create Post</Link>
+        <Link href={`/dashboard/admin/createPost`} className="inline-block bg-secondary text-primary text-sm px-9 py-0.5 rounded-full hover:opacity-90 hover:text-typography">Create Post</Link>
         <Posts/>
     </main>
 )
