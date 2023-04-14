@@ -90,7 +90,7 @@ export default function EditPost(url: URL) {
     };
 
     return (
-        <form onSubmit={submitPost} className="bg-white my-8 p-8 rounded-md">
+        <form onSubmit={submitPost} className="bg-white  rounded-md">
             <div className="flex flex-col my-4">
                 <textarea
                     className="p-4 text-lg rounded-md my-2 bg-gray-200"

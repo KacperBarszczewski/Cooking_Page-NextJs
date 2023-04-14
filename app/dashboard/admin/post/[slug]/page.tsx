@@ -22,10 +22,10 @@ export default async function Dashboard(url: URL) {
 
 
     return (
-        <main>
+        <main className="max-w-5xl mx-auto my-5 p-2">
             <h1 className="text-2xl font-bold">Edit Post</h1>
             <EditPost params={{ slug: url.params.slug }} />
-            <h1 className="text-2xl font-bold">Delete Post</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-2">Delete Post</h1>
             <DeletePost id={url.params.slug} />
         </main>
     )

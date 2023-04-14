@@ -15,7 +15,7 @@ export default async function Dashboard() {
 
 
 return(
-    <main>
+    <main className="max-w-5xl mx-auto my-5 p-2">
         <h1 className="text-2xl font-bold">Create Post</h1>
         <AddPost />
     </main>
