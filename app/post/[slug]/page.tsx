@@ -49,7 +49,7 @@ export default function PostDetail(url: URL) {
             </div>
 
             <div className="py-2 px-5">
-                <h2 className="font-bold">{data.title}</h2>
+                <h2 className="font-bold text-lg">{data.title}</h2>
             </div>
 
             <div className="py-2 px-5 flex gap-2">
