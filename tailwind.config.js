@@ -18,7 +18,7 @@ module.exports = {
           dark: '#282728',
         },
         'typography': {
-          DEFAULT: '#000000',
+          DEFAULT: '#1B1B1B',
           dark: '#c8d6e5',
         },
       },
