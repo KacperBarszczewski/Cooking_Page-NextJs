@@ -53,7 +53,7 @@ export default function AddComment({ id }: PostProps) {
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
                     name="title"
-                    className="p-4 h-36 rounded-md resize-y bg-bright border-2 border-secondary"
+                    className="p-4 h-36 rounded-md resize-y bg-bright border-2 border-secondary text-sm font-semibold"
                 />
             </div>
             <div className="flex items-center gap-2">

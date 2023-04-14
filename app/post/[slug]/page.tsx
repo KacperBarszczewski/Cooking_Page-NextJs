@@ -97,7 +97,7 @@ export default function PostDetail(url: URL) {
                         </div>
                     </div>
                     <div className="py-4">
-                        <p className="break-words bg-bright p-4 rounded">{comment.message} </p>
+                        <p className="break-words bg-bright p-4 rounded text-sm font-semibold">{comment.message} </p>
                     </div>
                 </div>
             ))}
