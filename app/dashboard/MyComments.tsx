@@ -26,7 +26,7 @@ export default function MyComments() {
                     key={comment.id}
                     id={comment.id}
                     message={comment.message}
-                    published={comment.published}
+                    date={comment.createdAt}
                 />
             ))}
         </div>

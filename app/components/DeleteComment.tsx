@@ -45,7 +45,7 @@ export default function DeleteComment({ id }: PostProps) {
         <form onSubmit={submitComment} className="my-8">
             <button
                 disabled={isDisabled}
-                className="text-sm bg-red-500 text-white p-2"
+                className="bg-error text-sm  text-background px-9 py-0.5 rounded-full disabled:opacity-25 hover:opacity-80"
                 type="submit"
             >
                 X

@@ -6,24 +6,33 @@ import DeleteComment from "../components/DeleteComment"
 type EditProp = {
     id: string
     message: string
-    published: boolean
-    // userId: string
-    // postId: string
+    date: string
 }
 
-export default function EditComment({id,message,published}:EditProp){
+const dateFormat = (date: string | undefined) => {
+    if (date) {
+        const date2 = new Date(date);
+        return date2.toLocaleString().slice(0, 17);
+    }
 
-    return(
-        <div className="bg-white my-8 p-4 rounded-lg">
-            <div className="my-8">
-                <h3>{message}</h3>
+}
+
+export default function EditComment({ id, message, date }: EditProp) {
+
+    return (
+        <div className=" my-8 p-4 rounded-lg border-primary border bg-bright">
+            <div className="flex items-center gap-2">
+                <p>Created at:</p>
+                <time className="text-[0.7rem]">{dateFormat(date)}</time>
             </div>
-            <div className="flex">
-                <h3>{ published.toString()}</h3>
-                <DeleteComment id={id}/>
+            <div className="">
+                <p className="break-words bg-background p-4 rounded-lg text-sm font-semibold">{message}</p>
             </div>
-            
-            
+            <div className="flex place-items-center gap-5">
+                <DeleteComment id={id} />
+            </div>
+
+
         </div>
     )
 

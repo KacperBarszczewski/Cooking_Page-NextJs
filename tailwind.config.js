@@ -11,7 +11,7 @@ module.exports = {
         'primary': '#E58A2F',
         'secondary': '#FFD49B',
         'bright':'#FCF1E6',
-        'error': '#c44569',
+        'error': '#c22f1b',
         'foreground': '#484748',
         'background': {
           DEFAULT: '#ffffff',
