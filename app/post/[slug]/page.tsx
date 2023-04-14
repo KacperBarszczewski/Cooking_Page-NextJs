@@ -41,40 +41,41 @@ export default function PostDetail(url: URL) {
     }
 
     return (
-        <div>
-            <div>
-                {
-                    data.image ? <Image className="object-cover h-40 w-screen" width={200} height={200} src={data.image} alt={data.title + " image"} /> : <div className="h-36 w-[20rem]" />
-                }
-            </div>
-
-            <div className="py-2 px-5">
-                <h2 className="font-bold text-lg">{data.title}</h2>
-            </div>
-
-            <div className="py-2 px-5 flex gap-2">
-                <Image className="rounded-full w-8 " width={64} height={64} src={data.user.image} alt="author image" />
-                <p className="text-xs font-bold">{data.user.name}</p>
-            </div>
-
-            <div className="py-5 px-5">
-                <div className="flex justify-center py-5">
-                    <h2 className="font-bold text-lg">Ingredients</h2>
+        <div className="max-w-5xl mx-auto mt-5">
+            <div className="md:flex">
+                <div className="basis-2/3  md:pl-5">
+                    {
+                        data.image ? <Image className="object-cover  h-40 w-screen md:rounded-lg md:h-96 md:w-full " width={200} height={200} src={data.image} alt={data.title + " image"} /> : <div className="h-36 w-[20rem]" />
+                    }
+                    <div className="py-2 px-5">
+                        <h2 className="font-bold text-lg">{data.title}</h2>
+                    </div>
+                    <div className="py-2 px-5 flex gap-2">
+                        <Image className="rounded-full w-8 " width={64} height={64} src={data.user.image} alt="author image" />
+                        <p className="text-xs font-bold">{data.user.name}</p>
+                    </div>
                 </div>
-                <ul className="list-inside list-disc marker:text-primary marker:text-2xl">
-                    {data?.ingredients?.map((comment, i) => (
-                        <li key={i} className="py-2 border-b border-primary text-sm font-semibold text-justify">
-                            {comment}
-                        </li>
-                    ))}
-                </ul>
+
+                <div className="py-5 md:py-0 px-5 basis-1/3">
+                    <div className="flex justify-center py-5 md:py-0 md:justify-start">
+                        <h2 className="font-bold text-lg md:text-3xl">Ingredients</h2>
+                    </div>
+                    <ul className="list-inside list-disc marker:text-primary marker:text-2xl">
+                        {data?.ingredients?.map((comment, i) => (
+                            <li key={i} className="py-2 border-b border-primary text-sm font-semibold text-justify">
+                                {comment}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
 
-            <div className="py-5 px-5">
-                <div className="flex justify-center py-5">
-                    <h2 className="font-bold text-lg">Description</h2>
+
+            <div className="p-5 mt-5 bg-bright rounded-xl">
+                <div className="flex justify-center mb-4 md:justify-start">
+                    <h2 className="font-bold text-lg md:text-3xl">Description</h2>
                 </div>
-                <div className="bg-bright p-5 rounded font-semibold">
+                <div className="bg-background p-4 rounded-xl font-semibold">
                     {data?.content}
                 </div>
             </div>
