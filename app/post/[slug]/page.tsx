@@ -34,10 +34,10 @@ export default function PostDetail(url: URL) {
     })
 
     if (isLoading) {
-        return 'Loading...'
+        return <div className='flex justify-center animate-pulse my-8'>Loading...</div>
     }
     if (isError) {
-        return 'error'
+        return <div className='flex justify-center text-error'>error</div>
     }
 
     return (

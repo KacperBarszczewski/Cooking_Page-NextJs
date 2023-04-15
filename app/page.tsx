@@ -15,16 +15,14 @@ export default function Home() {
   const { data, error, isLoading } = useQuery<PostType[]>({ queryFn: allPosts, queryKey: ["posts"], })
 
   if (isLoading) {
-    return <div className='flex justify-center'>Loading...</div>
+    return <div className='flex justify-center animate-pulse my-8'>Loading...</div>
   }
   if (error) {
-    return <div className='flex justify-center'>error</div>
+    return <div className='flex justify-center text-error'>error</div>
   }
 
   return (
     <main className='my-8'>
-
-
 
       <div className='flex justify-center'>
         <div className='grid sm:grid-cols-2 lg:grid-cols-3 justify-items-center'>
