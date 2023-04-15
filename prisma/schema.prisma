@@ -52,7 +52,7 @@ model Session {
 }
 
 model VerificationToken {
-  identifier String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String   @id @default(cuid()) @map("_id") 
   token      String   @unique
   expires    DateTime
 

@@ -4,6 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from '../../../prisma/client'
 import 'next-auth/jwt'
 import { Role } from "@prisma/client"
+import Email from "next-auth/providers/email"
+import EmailProvider from "next-auth/providers/email"
 
 type UserId = string
 
@@ -51,6 +53,17 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
       clientSecret: getGoogleCredentials().clientSecret,
+    }),
+    EmailProvider({
+      server: {
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD
+        }
+      },
+      from: process.env.EMAIL_FROM
     }),
   ],
   callbacks: {
