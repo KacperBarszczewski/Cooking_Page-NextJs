@@ -21,7 +21,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
           </QueryWrapper>
         </div>
         <div className='bg-primary h-7 flex justify-center items-center'>
-          <Link href="https://github.com/KacperBarszczewski" className='text-xs text-background'>Kacper Barszczewski</Link>
+          <Link href="https://github.com/KacperBarszczewski" className='text-xs text-background'>@Kacper Barszczewski</Link>
         </div>
       </body>
 

@@ -22,7 +22,7 @@ export default function DeleteComment({ id }: PostProps) {
         },
         {
             onSuccess: () => {
-                queryClient.invalidateQueries(["detail-post"])
+                queryClient.invalidateQueries(["auth-comments"])
             },
             onError: (error) => {
                 setIsDisabled(false)
