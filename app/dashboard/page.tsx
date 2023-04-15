@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import MyComments from "./MyComments";
 import Link from "next/link";
 import { Role } from "@prisma/client";
+import ChangeRoleButton from "./ChangeRoleButton";
 
 
 export default async function Dashboard() {
@@ -15,10 +16,10 @@ export default async function Dashboard() {
     return (
         <main className="max-w-5xl mx-auto my-5">
             <h1 className="text-2xl font-bold">Welcome back {session?.user?.name}</h1>
+            <ChangeRoleButton role={session.user.role === Role.ADMIN ? ' User' : ' Admin'} />
             {
                 session.user.role === Role.ADMIN ? <Link href={`/dashboard/admin`} className="inline-block bg-secondary text-primary text-sm px-9 py-0.5 rounded-full hover:opacity-90 hover:text-typography"> Admin panel</Link> : null
             }
-
             <MyComments />
         </main>
     )
