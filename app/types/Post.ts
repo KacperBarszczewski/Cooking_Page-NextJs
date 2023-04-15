@@ -11,8 +11,8 @@ export type PostType = {
     user: {
         email: string
         id: string
-        image: string
-        name: string
+        image?: string
+        name?: string
         role: Role
     }
     comments: {
@@ -24,8 +24,8 @@ export type PostType = {
         user: {
             email: string
             id: string
-            image: string
-            name: string
+            image?: string
+            name?: string
             role: Role
         }
     }[]

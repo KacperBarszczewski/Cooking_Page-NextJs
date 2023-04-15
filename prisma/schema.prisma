@@ -16,7 +16,7 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  image         String?
+  image         String?   @default("/profileImg.jpg")
   role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
@@ -52,7 +52,7 @@ model Session {
 }
 
 model VerificationToken {
-  identifier String   @id @default(cuid()) @map("_id") 
+  identifier String   @id @default(cuid()) @map("_id")
   token      String   @unique
   expires    DateTime
 

@@ -3,8 +3,8 @@ import { Role } from "@prisma/client"
 export type AuthComments = {
     email: string
     id: string
-    image: string
-    name: string
+    image?: string
+    name?: string
     role: Role
     comments?: {
         id: string

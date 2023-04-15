@@ -51,7 +51,7 @@ export default function PostDetail(url: URL) {
                         <h2 className="font-bold text-lg">{data.title}</h2>
                     </div>
                     <div className="py-2 px-5 flex gap-2">
-                        <Image className="rounded-full w-8 " width={64} height={64} src={data.user.image} alt="author image" />
+                        <Image className="rounded-full w-8 " width={64} height={64} src={data.user.image||""} alt="author image" />
                         <p className="text-xs font-bold">{data.user.name}</p>
                     </div>
                 </div>
@@ -88,12 +88,12 @@ export default function PostDetail(url: URL) {
                         <Image
                             width={35}
                             height={35}
-                            src={comment.user?.image}
+                            src={comment.user?.image||''}
                             alt="user image"
                             className="rounded-full"
                         />
                         <div>
-                            <h3 className="text-sm font-bold">{comment?.user?.name}</h3>
+                            <h3 className="text-sm font-bold">{comment?.user?.name ? comment?.user?.name : comment?.user?.email}</h3>
                             <time className="text-[0.7rem]">{dateFormat(comment.createdAt)}</time>
                         </div>
                     </div>
