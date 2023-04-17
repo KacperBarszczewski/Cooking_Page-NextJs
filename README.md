@@ -7,7 +7,7 @@ computer                   |  smartphone
 :-------------------------:|:-------------------------:
 ![](https://user-images.githubusercontent.com/91898098/232555559-b0e160cf-2fdf-4abc-90d3-9a4c95c44453.jpeg)           |  ![](https://user-images.githubusercontent.com/91898098/232555591-f6aac983-d21f-4a42-a084-b0adba9b4f2b.jpeg)
 ![](https://user-images.githubusercontent.com/91898098/232555603-1f7f64be-9c22-418f-8f8c-e982938b7852.jpeg)           |  ![](https://user-images.githubusercontent.com/91898098/232555615-978c82c6-8c54-47fa-9284-b610fd2a0ee1.jpeg)
-098/232555603-1f7f64be-9c22-418f-8f8c-e982938b7852.jpeg)
+
 
 
 ## Features:
