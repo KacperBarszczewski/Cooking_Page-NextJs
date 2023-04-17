@@ -1,6 +1,7 @@
 ## Links:
 Link to this page: [https://cooking-page-next-js.vercel.app](https://cooking-page-next-js.vercel.app)
 
+UI inspiration: [Link](https://www.behance.net/gallery/160432691/Video-platform-for-cooking-tutorials-UXUI-Case-study?tracking_source=search_projects%7CCooking+Website+ui)
 
 ## Screenshot:
 computer                   |  smartphone
