@@ -20,6 +20,7 @@ computer                   |  smartphone
 - OAuth 2.0 Authentication through Google and Email using **NextAuth.js**
 
 
+
 ## Run locally:
 1. Install dependencies
 
