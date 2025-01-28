@@ -2,8 +2,8 @@
 
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type Props = {
     role: string
@@ -12,13 +12,7 @@ type Props = {
 export default function ChangeRoleButton({ role }: Props) {
 
     const [isDisabled, setIsDisabled] = useState(false);
-    const [isWasSend, setIsWasSend] = useState(false);
-
-    useEffect(() => {
-        if (isWasSend) {
-            redirect('/')
-        }
-    }, [isWasSend])
+    const router = useRouter();
 
 
     const { mutate } = useMutation(
@@ -27,7 +21,7 @@ export default function ChangeRoleButton({ role }: Props) {
         },
         {
             onSuccess: () => {
-                setIsWasSend(true)
+                router.refresh();
             },
             onError: (error) => {
                 setIsDisabled(false)

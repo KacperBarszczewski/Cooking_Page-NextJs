@@ -29,14 +29,14 @@ const dateFormat = (date: string | undefined) => {
 
 export default function PostDetail(url: URL) {
     const { data, isLoading, isError } = useQuery<PostType>({
-        queryKey: ["detail-post"],
+        queryKey: ["detail-post", url.params.slug],
         queryFn: () => fetchDetails(url.params.slug)
     })
 
     if (isLoading) {
         return <div className='flex justify-center animate-pulse my-8'>Loading...</div>
     }
-    if (isError) {
+    if (isError || !data) {
         return <div className='flex justify-center text-error'>error</div>
     }
 
@@ -88,7 +88,7 @@ export default function PostDetail(url: URL) {
                         <Image
                             width={35}
                             height={35}
-                            src={comment.user?.image||''}
+                            src={comment.user?.image || ''}
                             alt="user image"
                             className="rounded-full"
                         />
