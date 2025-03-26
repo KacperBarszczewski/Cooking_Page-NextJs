@@ -4,8 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from '../../../prisma/client'
 import 'next-auth/jwt'
 import { Role } from "@prisma/client"
-import Email from "next-auth/providers/email"
 import EmailProvider from "next-auth/providers/email"
+import nodemailer from 'nodemailer';
 
 type UserId = string
 
@@ -55,15 +55,32 @@ export const authOptions: NextAuthOptions = {
       clientSecret: getGoogleCredentials().clientSecret,
     }),
     EmailProvider({
-      server: {
-        host: process.env.SMTP_HOST,
-        port: process.env.SMTP_PORT,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASSWORD
+      sendVerificationRequest: async ({ identifier, url }) => {
+        try {
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_PASS,
+            },
+          });
+
+          const mailOptions = {
+            to: identifier,
+            subject: 'Zaloguj się do Cooking Page',
+            html: `
+                    <h1 style="color:#e58a2f;font-weight: 800;">Cooking Page</h1>
+                    <p>Kliknij w link poniżej, aby się zalogować:</p><p><a href="${url}">${url}</a></p>
+                  `,
+          };
+
+          await transporter.sendMail(mailOptions);
+
+        } catch (error) {
+          console.error("Błąd podczas wysyłania e-maila:", error);
+          throw new Error("Nie udało się wysłać e-maila weryfikacyjnego");
         }
       },
-      from: process.env.EMAIL_FROM
     }),
   ],
   callbacks: {
