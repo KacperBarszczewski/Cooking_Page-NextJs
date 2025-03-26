@@ -60,8 +60,11 @@ export const authOptions: NextAuthOptions = {
           const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
+              type: 'OAuth2',
               user: process.env.GMAIL_USER,
-              pass: process.env.GMAIL_PASS,
+              clientId: process.env.NODEMAILER_GOOGLE_CLIENT_ID,
+              clientSecret: process.env.NODEMAILER_GOOGLE_CLIENT_SECRET,
+              refreshToken: process.env.NODEMAILER_GMAIL_REFRESH_TOKEN,
             },
           });
 
